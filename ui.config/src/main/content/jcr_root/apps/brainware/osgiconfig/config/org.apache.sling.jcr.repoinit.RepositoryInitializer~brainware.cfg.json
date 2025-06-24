@@ -1,0 +1,7 @@
+{
+    "scripts": [
+        "create path (sling:OrderedFolder) /content/dam/brainware",
+        "create path (nt:unstructured) /content/dam/brainware/jcr:content",
+        "set properties on /content/dam/brainware/jcr:content\n  set cq:conf{String} to /conf/brainware\n  set jcr:title{String} to \"Brainware Company\"\nend"
+    ]
+}

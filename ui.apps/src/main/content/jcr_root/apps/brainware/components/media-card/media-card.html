@@ -1,0 +1,31 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
+  <sly data-sly-call="${clientlib.all @ categories='newsportal.media'}"></sly>
+</sly>
+
+<h2 class="feature-heading">${properties.sectionTitle}</h2>
+
+<div class="content-grid">
+  <sly data-sly-test="${resource.hasChildren}" data-sly-list.section="${resource.getChildren}">
+    <sly data-sly-test="${section.hasChildren}" data-sly-list.block="${section.getChildren}">
+      <div class="tile-wrapper">
+        <div data-type="${block.mediaType}">
+          <sly data-sly-test="${block.mediaType == 'image'}">
+            <img src="${block.mediaLink}" alt="${block.mediaMetadata}" class="media-picture" />
+          </sly>
+          <sly data-sly-test="${block.mediaType == 'video'}">
+            <video class="media-clip" autoplay muted loop playsinline preload="metadata" poster="${block.videoPoster}">
+              <source src="${block.mediaLink}" type="${block.mediaMetadata}" />
+            </video>
+            <div class="icon-play">▶</div>
+          </sly>
+        </div>
+        <h3 class="tile-heading">${block.title}</h3>
+        <p class="tile-text">${block.description}</p>
+        <a href="${block.buttonLink}.html" target="${block.openNewTab == 'true' ? '_blank' : '_self'}"
+           rel="${block.openNewTab == 'true' ? 'noopener noreferrer' : ''}" class="tile-link">
+           ${block.buttonLabel}
+        </a>
+      </div>
+    </sly>
+  </sly>
+</div>
